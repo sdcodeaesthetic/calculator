@@ -8,6 +8,12 @@ def press(num):
     equation.set(expression)
 
 
+def keyboard_input():
+    global expression
+    expression = equation.get()
+    equation.set(expression)
+
+
 def evaluate_expression():
     try:
         global expression
