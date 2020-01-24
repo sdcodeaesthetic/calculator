@@ -20,10 +20,46 @@ def evaluate_expression():
         global expression
         total = str(eval(expression))
         equation.set(total)
-        expression = ""
+        expression = total
     except:
         equation.set("Error")
         expression = ""
+
+
+def absolute_value():
+    global expression
+    keyboard_input()
+    #items = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "+", "-", "*", "/"]
+    #symbols = ["+", "-", "*", "/"]
+    #i = 0
+    #while i < len(expression):
+        #if expression[i] not in items:
+            #equation.set("Error")
+            #expression = ""
+            #return
+    
+    expression = int(expression)
+    total = expression * (-1)
+    total = str(total)
+    equation.set(total)
+    expression = total
+
+
+def square_num():
+    global expression
+    keyboard_input()
+    expression = int(expression)
+    total = expression ** 2
+    total = str(total)
+    equation.set(total)
+    expression = total
+
+
+def backspace_entry():
+    keyboard_input()
+    global expression
+    expression = expression[:-1]
+    equation.set(expression)
 
 
 def clear_entry():
@@ -34,7 +70,7 @@ def clear_entry():
 
 root = Tk()
 root.title("Simple Calculator")
-root.geometry("350x225")
+root.geometry("300x267")
 
 equation = StringVar()
 expression_field = Entry(root, textvariable = equation, relief = RIDGE, bd = 20, bg = "powder blue")
@@ -42,6 +78,15 @@ expression_field.grid(columnspan = 4, ipadx = 70)
 
 button_clear = Button(root, text = 'Clear', width = 8, height = 2, command = clear_entry)
 button_clear.grid(row = 2, column = 0)
+
+button_percent = Button(root, text = '+\-', width = 8, height = 2, command = absolute_value)
+button_percent.grid(row = 2, column = 1)
+
+button_square = Button(root, text = 'x\u00b2', width = 8, height = 2, command = square_num)
+button_square.grid(row = 2, column = 2)
+
+button_backspace = Button(root, text = '\u232B', width = 8, height = 2, command = backspace_entry)
+button_backspace.grid(row = 2, column = 3)
 
 button1 = Button(root, text = '1', width = 8, height = 2, command = lambda: press(1))
 button1.grid(row = 3, column = 0)
