@@ -29,30 +29,31 @@ def evaluate_expression():
 def absolute_value():
     global expression
     keyboard_input()
-    #items = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "+", "-", "*", "/"]
-    #symbols = ["+", "-", "*", "/"]
-    #i = 0
-    #while i < len(expression):
-        #if expression[i] not in items:
-            #equation.set("Error")
-            #expression = ""
-            #return
-    
-    expression = int(expression)
-    total = expression * (-1)
-    total = str(total)
-    equation.set(total)
-    expression = total
+    try:
+        expression = int(expression)
+    except ValueError:
+        equation.set("Error")
+        expression = ""
+    else:
+        total = expression * (-1)
+        total = str(total)
+        equation.set(total)
+        expression = total
 
 
 def square_num():
     global expression
     keyboard_input()
-    expression = int(expression)
-    total = expression ** 2
-    total = str(total)
-    equation.set(total)
-    expression = total
+    try:
+        expression = int(expression)
+    except ValueError:
+        equation.set("Error")
+        expression = ""
+    else:
+        total = expression ** 2
+        total = str(total)
+        equation.set(total)
+        expression = total
 
 
 def backspace_entry():
