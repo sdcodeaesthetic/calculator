@@ -14,7 +14,7 @@ def keyboard_input():
     equation.set(expression)
 
 
-def evaluate_expression():
+def evaluate_expression(eff = None):
     keyboard_input()
     try:
         global expression
@@ -56,7 +56,7 @@ def square_num():
         expression = total
 
 
-def backspace_entry():
+def backspace_entry(eff = None):
     keyboard_input()
     global expression
     expression = expression[:-1]
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     button_square = Button(root, text = 'x\u00b2', width = 8, height = 2, command = square_num)
     button_square.grid(row = 2, column = 2)
 
-    button_backspace = Button(root, text = '\u232B', width = 8, height = 2, command = backspace_entry)
+    button_backspace = Button(root, text = '\u232B', width = 8, height = 2, command = lambda: backspace_entry(None))
     button_backspace.grid(row = 2, column = 3)
 
     button1 = Button(root, text = '1', width = 8, height = 2, command = lambda: press(1))
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     button0 = Button(root, text = '0', width = 8, height = 2, command = lambda: press(0))
     button0.grid(row = 6, column = 1)
 
-    button_equal = Button(root, text = '=', width = 8, height = 2, command = evaluate_expression)
+    button_equal = Button(root, text = '=', width = 8, height = 2, command = lambda: evaluate_expression(None))
     button_equal.grid(row = 6, column = 2)
 
     button_plus = Button(root, text = '+', width = 8, height = 2, command = lambda: press("+"))
@@ -138,4 +138,6 @@ if __name__ == "__main__":
     button_divide = Button(root, text = '/', width = 8, height = 2, command = lambda: press("/"))
     button_divide.grid(row = 6, column = 3)
 
+    root.bind('<Return>', lambda eff: evaluate_expression(eff))
+    root.bind('<BackSpace>', lambda eff: backspace_entry(eff))
     root.mainloop()
